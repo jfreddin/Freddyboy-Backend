@@ -13,6 +13,6 @@ export const verifyToken = (req, res, next) => {
 
     }catch(error){
         console.log(`Error in verifyToken middleware, ${error}`)
-        req.status(500).json({success: false, message: "Internal server error"});
+        res.status(500).json({success: false, message: "Internal server error"});
     }
 }

@@ -24,16 +24,6 @@ export async function checkAuth(req, res){
     }
 }
 
-export async function getAllUsers (req, res){
-    try{
-        const users = await User.find();
-        res.status(200).json(users);
-    }catch(error){
-        console.error("Error in getAllUsers controller");
-        res.status(501).json({ message: "Internal erver error: Could not obtain users" })
-    }
-};
-
 export async function signup(req, res){
     const{username, name, email, password}  = req.body;
     try{
@@ -179,7 +169,7 @@ export async function forgotPassword(req, res){
        const resetToken = crypto.randomBytes(20).toString("hex");
        const resetTokenExpiresAt = Date.now() + 60*60*1000;
 
-       await sendPasswordResetEmail(email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`);
+       await sendPasswordResetEmail(email, `${process.env.CLIENT_URL}/api/auth/reset-password/${resetToken}`);
 
        user.resetPasswordToken = resetToken;
        user.resetPasswordExpiresAt = resetTokenExpiresAt;
