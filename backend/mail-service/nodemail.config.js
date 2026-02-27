@@ -7,7 +7,7 @@ console.log("PASS:", process.env.PASS ? "loaded" : "missing");
 
 export const sender = {
   email: process.env.GMAIL,
-  name: "Project-2",
+  name: "John Doe",
 }
 
 export const nodeMailSender = nodemailer.createTransport({
